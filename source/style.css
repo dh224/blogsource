@@ -786,6 +786,15 @@
     display: block;
     text-align: center;
     margin: 3rem auto;
+    margin-top: 1rem;
+    padding: 10rem 0;
+    background-image: url("/back.jpg");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    opacity: 85%;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.02), 1px 1px 15px 0 rgba(0,0,0,0.03);
   }
   .cover .cover__logo {
     max-width: 1024px;
@@ -799,7 +808,11 @@
     margin: 0 auto 1rem auto;
   }
   .cover .cover__intro {
-    color: #999;
+    color: #c1c1c1;
+    text-shadow: 0.1em 0.1em 0.2em #fff;
+  }
+  .cover h1 {
+    color: #fff;
   }
   .footer {
     display: block;

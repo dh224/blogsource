@@ -58,8 +58,8 @@ navbar:
       url: /archives/
 #    - name: 友链
 #      url: /friends/
-    - name: Page
-      url: /page/
+#    - name: Page
+#      url: /page/
 
   # 导航栏永远显示在屏幕顶端
   # 仅当屏幕宽度不小于 1080 px 时生效
@@ -414,7 +414,7 @@ vendors:
   # https://cdn.jsdelivr.net/npm/hexo-theme-cards@1.2/dist/css/style/main.min.css
   # Version: 1.2
   # 如果你有自定义样式，请务必将此项修改为自己的 CDN 地址，或者单纯留空
-  style: 
+  style: style.css
 
   # darkmode
   # https://cdn.jsdelivr.net/npm/hexo-theme-cards@1.2/dist/css/style/dark.min.css
