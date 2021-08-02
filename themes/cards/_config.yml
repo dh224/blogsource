@@ -46,7 +46,7 @@ head:
 navbar: 
 
   # 左侧名称显示
-  sitename: Demo
+  sitename: 南方真理会
   
   # 右侧站内导航链接
   menu: 
@@ -56,8 +56,8 @@ navbar:
       url: /tags/
     - name: 归档
       url: /archives/
-    - name: 友链
-      url: /friends/
+#    - name: 友链
+#      url: /friends/
     - name: Page
       url: /page/
 
@@ -69,13 +69,13 @@ navbar:
 cover: 
 
   # 显示在最上方 cover 处的站点名称
-  sitename: Demo
+  sitename: 南方真理会
 
   # 若 avatar 配置不为空，则优先使用 avatar 覆盖 sitename
   avatar: 
   
   # sitename/avatar 下方的一句话介绍
-  description: Hi, nice to meet you!
+  description: 
 
 
 
@@ -87,7 +87,7 @@ style:
 
   # 颜色配置
   color: 
-    main_color: '#eb5757'
+    main_color: '#336699'
 
   # 弧度设置
   radius: 
@@ -138,8 +138,8 @@ meta:
   
   # 默认文章作者（可在front-matter中覆盖）
   author:
-    name: ChrAlpha
-    url: https://chralpha.com
+    name: dh
+    url: https://studyallthetime.com
   
   # 文章创建日期
   date:
@@ -158,7 +158,7 @@ meta:
 
   # 文章过时提醒
   expire: 
-    enable: false
+    enable: true
     duration: 120  # 超过此天数则显示过期提醒
 
   # 文章自动摘要
@@ -391,8 +391,8 @@ fold:
 
 # 图片点击放大插件
 fancybox: 
-  enable: false
-  auto: false
+  enable: true
+  auto: true
   
 # 返回顶部
 back_to_top: false
