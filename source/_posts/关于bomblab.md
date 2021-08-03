@@ -2,6 +2,7 @@
 title: 关于bomblab
 date: 2021-08-03 12:00:07
 tags: csapp
+thumbnail: http://satt.oss-cn-hangzhou.aliyuncs.com/img/bomblabtu.png
 ---
 今天看了csapp的第三章，打算做做bomblab。之前在课上，教授其实或多或少都讲过关于bomblab的介绍，我在之前也看过别人的弹幕，据说很难。因此也做好了心理准备。但是没想到这么难。
 
@@ -26,7 +27,7 @@ cd bomb/
 
 在这里我得不到什么帮助，只能打开bomb.c文件，试图找到一点头绪。但是，里面似乎只是一长段奇怪的代码，以及莫名其妙的DR.EVIL的故事。
 
-```c
+```c#
 /***********************************************************
  * Dr. Evil's Insidious Bomb, Version 1.1
  * Copyright 2011, Dr. Evil Incorporated. All rights reserved.
@@ -80,9 +81,7 @@ gdb bomb //打开bomb
 --------------
 (gdb) disas phase_1
 ```
-
 得到如下的代码:
-
 ```assembly
 Dump of assembler code for function phase_1:
    0x0000000000400ee0 <+0>:     sub    $0x8,%rsp
@@ -97,6 +96,7 @@ End of assembler dump.
 ```
 让我们来分析分析。首先是第0行，我们知道%rsp是保存指向栈顶的指针的寄存器，而对他进行自减，就是为了给栈帧开辟0x8个字节的空间。第1行，将立即数0x402400保存到%esi中，然后调用了一个 *<strings_not_equal>* 的方法 。在第3行，test了%eax的内容，如果相等,则跳转到第6行，即出栈，返回，函数结束;如果不相等，则跳转到 *<explode_bomb>* ，显然就是炸弹爆炸了。我们知道，%eax是32位系统中的返回值，容易料想到是保存了  *<strings_not_equal>*的返回值。自此，分析结束。
 %esi中保存的是用于比较的参数，很可能就是要输入的字串.也就是立即数0x402400是字符串的首地址。于是用gdb命令查看.
+
 ```bash
 (gdb) x 0x402400
 0x402400:       0x64726f42
@@ -109,7 +109,4 @@ End of assembler dump.
 得到了phase_1()的答案。也就是
 >Border relations with Canada have never been better.
 
-###phase_2()
-
-
-待写
+### phase_2()
