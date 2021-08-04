@@ -371,7 +371,7 @@ footer:
 
 # 图片懒加载插件
 lazyload:
-  enable: false
+  enable: true
   loadingImage: 
 
 # 站内搜索插件
