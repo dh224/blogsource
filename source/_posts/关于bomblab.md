@@ -1,7 +1,9 @@
 ---
 title: 关于bomblab
 date: 2021-08-03 12:00:07
-tags: csapp
+tags: 
+- csapp
+- 汇编
 thumbnail: http://satt.oss-cn-hangzhou.aliyuncs.com/img/aa.png
 ---
 今天看了csapp的第三章，打算做做bomblab。之前在课上，教授其实或多或少都讲过关于bomblab的介绍，我在之前也看过别人的弹幕，据说很难。因此也做好了心理准备。但是没想到这么难。
