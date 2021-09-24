@@ -4,7 +4,7 @@ date: 2021-09-24 21:25:59
 tags: 
 - AR
 - DICOM
-thumbnail: http://satt.oss-cn-hangzhou.aliyuncs.com/img/aa.png
+thumbnail: http://satt.oss-cn-hangzhou.aliyuncs.com/img/image-20210924215731095.png
 
 ---
 
@@ -39,6 +39,8 @@ Using a Spatially-Aware Mobile Device](http://satt.oss-cn-hangzhou.aliyuncs.com/
 
 随后，先后获取肝脏模型在Y轴上的position和切面（由于我没有平板，只能模拟代替了）的position。计算差值，根据当前模型的的高度，计算比例，再用这个比例去提取那133张dcm文件中对应的图。逻辑很简单，但实现却非常奇怪。因为我发现，实现后的ct图并不是按高度播放的。
 
-又过了一小段时间的思考，我认识到，是之前的那个网站（DICOMGO)默默地替我将那些dcm文件按顺序排好了。随后我就去查看fo-dicom(unity上可用的一个插件，用来加载dcm文件)的文档，去寻找对应的tag。显然我高估了我的查文档能力，查了快一个小时，仍然写不出有用的代码。最终还是由于运气好，看到了别人的提问中附带的代码，里面恰好有提取tag内容的代码，因此复制、粘贴，获得了dcm文件的sliceLocation的信息，接下去就很简单了，将我要的文件改个名字，其他的全删掉，其余逻辑和之前一样，并最终实现了功能——仅仅是最基础的功能。
+又过了一小段时间的思考，我认识到，是之前的那个网站（DICOMGO)默默地替我将那些dcm文件按顺序排好了。随后我就去查看fo-dicom(unity上可用的一个插件，用来加载dcm文件)的文档，去寻找对应的tag。显然我高估了我的查文档能力，查了快一个小时，仍然写不出有用的代码。最终还是由于运气好，看到了别人的提问中附带的代码，里面恰好有提取tag内容的代码，因此复制、粘贴，获得了dcm文件的sliceLocation的信息，接下去就很简单了，将我要的文件改个名字，其他的全删掉，其余逻辑和之前一样，并最终实现了功能——仅仅是最基础的功能。如封面图。
+
+![image-20210924215731095](http://satt.oss-cn-hangzhou.aliyuncs.com/img/image-20210924215731095.png)
 
 总之，总算是跑起来了。接下去我也懒得做了。看了看傅老师的unity视频，做做游戏不是比做ar好玩多了？
