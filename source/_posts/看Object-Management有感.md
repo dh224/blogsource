@@ -2,11 +2,12 @@
 title: 看Object Management有感
 date: 2021-10-08 13:57:14
 tags: [Unity]
+thumbnail: http://satt.oss-cn-hangzhou.aliyuncs.com/img/image-20211008182646614.png
 ---
 
 
 
-看了[Catlike coding的教程](https://catlikecoding.com/unity/tutorials/object-management/persisting-objects/)，感觉有所收获，在这里记录一下。
+看了[Catlike coding的教程](https://catlikecoding.com/unity/tutorials/object-management/persisting-objects/)，感觉有所收获，在这里记录一下.
 
 ## 对象的持久化
 
