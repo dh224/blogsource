@@ -244,3 +244,127 @@ public class Game : PersistableObject {
 
 如此，我们完成了对于之前功能的抽象。
 
+## 物体的种类
+
+### 形状工厂
+
+为了能让我们生成不同形状的物体，我们需要创建一个继承了PersistableObject类的Shape类。值得注意的是，由于我们之前的设置，persistableObject类和Shape类不能共存。
+
+接下去，我们继续创建ShapeFactiory类。对于这个工厂，他的作用是交付形状实例。我们不需要让他设置位置、旋转和缩放。也不需要改变状态。因此它可以作为一个asset存在。实现的方法是继承ScriptableObject类.
+
+```
+[CreateAssetMenu]
+public class ShapeFactory : ScriptableObject {}
+```
+
+使用[CreateAssetMenu]标签可以让它出现在create里。
+
+![image-20211008204206185](http://satt.oss-cn-hangzhou.aliyuncs.com/img/image-20211008204206185.png)
+
+在ShapeFactory类里，我们创建预制件。并且实现其交付功能
+
+```c#
+	public Shape Get (int shapeId) {
+		return Instantiate(prefabs[shapeId]);
+	}
+		public Shape GetRandom () {
+		return Get(Random.Range(0, prefabs.Length));
+	}
+```
+
+此时有个值得注意的点。产生随机形状的时候，代码中居然写的是0~prefabs.Length。我们都知道，实际上应该是0~prefabs.Length-1才对。这只是因为unity为他特意做了设置而已。为了能让ShapeFactory实现功能，我们还需要修改原来的一些代码，不赘。
+
+### 保存形状和材质
+
+之前我们已经能够做到保存生成的cube。既然已经实现了生成不同形状的物体，那么势必要修改一下我们的存取了。
+
+显然，为了知道当前物体的形状，我们必须要在Shape类里添加一个shapeId属性。理论上，这个属性应该是readonly的。但是，考虑到我们实现了形状工厂以及其他的抽象，我们必然要在其他地方设置物体的形状，因此我们需要添加get和set方法。并且，可以添加一条简单的if语句来判断形状是否正确分配了。
+
+```c#
+	public int ShapeId {
+		get {
+			return shapeId;
+		}
+		set {
+			if (shapeId == 0) {
+				shapeId = value;
+			}
+			else {
+				Debug.LogError("Not allowed to change shapeId.");
+			}
+		}
+	}
+```
+
+此处又是一个很细的点。由于默认值一开始设置的是0，而0有可能代表false。为了避免这种情况，我们将默认值设置为int的最小值。
+
+![image-20211008205613493](http://satt.oss-cn-hangzhou.aliyuncs.com/img/image-20211008205613493.png)
+
+由于添加了形状属性。所以，我们保存的文件也需要增加这一部分。这与之前设置的存档起了冲突。
+
+一个简单的想法是：添加version属性，用来判断不同版本的存档，便于我们读取。即，新版本支持读取旧版本的存档。
+
+```c#
+	public override void Save (GameDataWriter writer) {
+		writer.Write(saveVersion);
+		writer.Write(shapes.Count);
+		…
+	}
+	
+	public override void Load (GameDataReader reader) {
+		int version = reader.ReadInt();
+		int count = reader.ReadInt();
+		…
+	}
+```
+
+此处，教程用了一种相当巧妙的方法。由于原先存档的第一个int是物体的数量，那么必然>=0。因此，我们在保存version的时候，可以将其反转正负号。当我们读取第一个数字后，若是正数，那么我们就能立刻判断出这是个老版本的存档。此处还添加了一个版本判断报错。
+
+```c#
+int version = reader.Version;
+if (version > saveVersion)
+{
+	Debug.LogError("Unsupported future save version " + version);
+     return;
+}
+int count = version <= 0 ? -version : reader.ReadInt();
+```
+
+当然，接下去还有一系列逻辑代码的修改，在教程里写的很清楚。
+
+除了可以改变创建物体的形状，还可以修改创建物体的材质。不过方法与之类似。不赘述。
+
+### 随机颜色
+
+为了创建随机颜色的物体。我们需要在Shape里创建新的字段，并增加set方法。
+
+```
+	Color color;
+
+	public void SetColor (Color color) {
+		this.color = color;
+		GetComponent<MeshRenderer>().material.color = color;
+	}
+```
+
+并且在之前的抽象类,GameDataWriter\reader里增加一个方法：
+
+```
+public void Write (Color value) {
+	writer.Write(value.r);
+	writer.Write(value.g);
+	writer.Write(value.b);
+	writer.Write(value.a);
+}
+	public Color ReadColor () {
+		Color value;
+		value.r = reader.ReadSingle();
+		value.g = reader.ReadSingle();
+		value.b = reader.ReadSingle();
+		value.a = reader.ReadSingle();
+		return value;
+	}
+```
+
+为了增加向后兼容的能力，即若打开旧版本存档，我们就要跳过存储颜色的部分。这部分教程里写的很清楚。
+
