@@ -2,6 +2,7 @@
 title: eye-tracking 在VR的应用
 date: 2021-11-24 20:08:07
 tags: [VR,eye-tracking,paper]
+thumbnail: https://satt.oss-cn-hangzhou.aliyuncs.com/img/image-20211124211241275.png
 ---
 
 
