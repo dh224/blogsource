@@ -33,8 +33,6 @@ Steuer认为，定义何为虚拟现实的关键是定义好"presence"即存在�
 
 首先是双眼的注视点，这几乎是必须的。其次就是眼睛的动作。比如：注视、扫视、眨眼、闭眼等信息，都可以用来帮助我们进行分析。
 
-## Eye-tracking在VR的应用
-
 ### 基于Eye-tracking的控制
 
 再一次，Eye-tracking提供双向信息。相比于用手柄进行交互，基于Eye-tracking的交互方式应该会更类似手势，操作直观且无心智负担。当然，基于Eye-tracking的交互方式也有很多，该文介绍了几种新的基于眼睛跟踪的交互技术，如双十字线、径向追踪、点头和滚动[32]。论文待看。这种方式还能够提高上下文的阅读水平[12]。论文待看。还可以用来生成路径[32]。论文待看。还可以用以用户移动。Xu等人[36]提出将显著性图和历史扫描路径输入卷积神经网络和长-短期记忆，以预测用户将要看的地方。论文待看。
@@ -58,3 +56,111 @@ Steuer认为，定义何为虚拟现实的关键是定义好"presence"即存在�
 ## 总结
 
 总之，目前还需要多看论文才有更好的认识和方向。似乎可行的研究方向是：1.想办法在现有设备下，收集和利用好更多的眼动数据（注视熵、眼跳峰值速度和眼跳持续时间）等。2.提取合适的信息当作特征，用以训练模型。
+
+
+
+
+
+### 待看paper list
+
+**A. McNamara, K. Boyd, D. Oh, R. Sharpe, and A. Suther,**
+**"Using Eye Tracking to Improve Information Retrieval in**
+**Virtual Reality," in 2018 IEEE International Symposium on**
+**Mixed and Augmented Reality Adjunct (ISMAR-Adjunct),**
+**2018, pp. 242-243: IEEE.**
+
+ 
+
+ 
+
+**A. Haffegee, V. Alexandrov, and R. Barrow, "Eye tracking
+and gaze vector calculation within immersive virtual
+environments," in Proceedings of the 2007 ACM symposium
+on Virtual reality software and technology, 2007, pp. 225-226:
+ACM.**
+
+ 
+
+ 
+
+**S. Stellmach, L. Nacke, and R. Dachselt, "Advanced gaze
+visualizations for three-dimensional virtual environments," in
+Proceedings of the 2010 symposium on eye-tracking research
+& Applications, 2010, pp. 109-112: ACM.**
+
+------
+
+> **T. Piumsomboon, G. Lee, R. W. Lindeman, and M.
+> Billinghurst, "Exploring natural eye-gaze-based interaction
+> for immersive virtual reality," in 2017 IEEE Symposium on 3D
+> User Interfaces (3DUI), 2017, pp. 36-39: IEEE.**
+
+该文介绍了三种基于眼动的交互方式。分别为：1.双十字线DR（Duo-Reticles）2.半径追踪RP（Radial Pursuit ）3.点头与旋转NR（Nod and Roll）。
+
+DR：即有两个十字线，一个是实时同步用户的注视点，另一个则根据下图的公式，进行惯性移动，具有一定的延迟。当双十字线重合时，认为是选中目标。![image-20211125105415489](https://satt.oss-cn-hangzhou.aliyuncs.com/img/image-20211125105415489.png)
+
+RP：该方法的逻辑是：用户注视某个预设区域时，会产生产生一个逐渐扩张的圆形（即半径追踪的Radial），伴随着圆的扩张，半径内的物体会进行小范围的移动。此时，双眼的注视点应跟随要选中的物体。当到达某个预设时间后，根据下图的公式判定用户选择了哪个物体。其中p为物体位置，p'为注视点位置，基本就是选择注视点最近的物体。
+
+![image-20211125105515185](https://satt.oss-cn-hangzhou.aliyuncs.com/img/image-20211125105515185.png)
+
+RP用在很多其他的场合，但在VR中并无应用。RP特别适合用于选择固定场景内的杂乱小物体。
+
+NR：当我们注视某物体的同时转头，眼球会不自觉地朝转头方向相反的方向运动。根据这点，我们可以通过进行交互。如盯着某物体进行转头操作，就可以旋转该物体等。
+
+研究者们设计了几组实验用以对比。其中GD1是凝视选择，即注视一段时间后即为选中。GD2是扩张完成后再选择，无追踪。
+
+其中，双十字线的速度和精度和GD差不多，但是由于没有时间限制，会给使用者较少的心理压力。但同时，要留有惯性十字线的辨识度问题，如果它太过显眼，或许会造成干扰。
+
+对于RP。认为它更加无感（与完全拓展后进行选择相比）。但这种方法需要你提前了解你要选择的物体才可以，不然边动边选择，可能时间不过多。
+
+对于点头和摇头。使用者认为他们很有趣，在一些场合比手势更加直观。但是由于HMD的重量，导致并不是很舒适。并且，在做一些迅猛的运动的时候，有可能导致HMD松动，造成错误。
+
+![image-20211125105757669](https://satt.oss-cn-hangzhou.aliyuncs.com/img/image-20211125105757669.png)
+
+------
+
+**34** 
+
+**S. Vickers, H. Istance, and A. Hyrskykari, "Performing
+locomotion tasks in immersive computer games with an
+adapted eye-tracking interface," ACM Transactions on
+Accessible Computing (TACCESS), vol. 5, no. 1, p. 2, 2013.**
+
+ 
+
+**35**
+
+**B. Bolte and M. Lappe, "Subliminal reorientation and
+repositioning in immersive virtual environments using
+saccadic suppression," IEEE transactions on visualization and
+computer graphics, vol. 21, no. 4, pp. 545-552, 2015.**
+
+ 
+
+ **36**
+
+**Y. Xuet al., "Gaze prediction in dynamic 360 immersive
+videos," in proceedings of the IEEE Conference on Computer
+Vision and Pattern Recognition, 2018, pp. 5333-5342**
+
+ **39**
+
+**P. Menezes, J. Francisco, and B. Patrão, "The Importance of
+Eye-Tracking Analysis in Immersive Learning-A Low Cost
+Solution," in Online Engineering & Internet of Things:
+Springer, 2018, pp. 689-697.**
+
+ **40** 
+
+**W. Steptoeet al., "Eye tracking for avatar eye gaze control
+during object-focused multiparty interaction in immersive
+collaborative virtual environments," in 2009 IEEE Virtual
+Reality Conference, 2009, pp. 83-90: IEEE.**
+
+**41**
+
+**J. Jordan and M. Slater, "An analysis of eye scanpath entropy
+in a progressively forming virtual environment," Presence:
+Teleoperators and Virtual Environments, vol. 18, no. 3, pp.
+185-199, 2009.**
+
