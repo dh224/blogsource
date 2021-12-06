@@ -1,7 +1,7 @@
 ---
 title: 使用Arcgis for js画出密接人群移动轨迹图
 date: 2021-12-06 21:29:32
-tags: [arcgis],[vue],[web]
+tags: [arcgis,vue,web]
 thumbnail: https://satt.oss-cn-hangzhou.aliyuncs.com/img/image-20211206213201817.png
 ---
 
