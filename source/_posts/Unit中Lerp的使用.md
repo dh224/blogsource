@@ -1,6 +1,6 @@
 ---
 title: Lerp的误解和正确使用
-date: 2023-03-03 12:43:46
+date: 2023-03-07 10:43:46
 tags: [Unity, IK, OMC]
 thumbnail: https://ob-1253229442.cos.ap-shanghai.myqcloud.com/ob/202303071048386.png
 ---
