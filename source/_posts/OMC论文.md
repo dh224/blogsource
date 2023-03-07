@@ -1,5 +1,5 @@
 ---
-title: 回合制游戏中的寻路以及显示移动范围
+title: OMC
 date: 2023-03-03 12:43:46
 tags: [Unity, IK, OMC]
 thumbnail: https://ob-1253229442.cos.ap-shanghai.myqcloud.com/ob/202303031317309.png
